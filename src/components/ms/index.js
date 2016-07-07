@@ -2,7 +2,16 @@
 'use strict';
 
 import React from 'react';
-import * as breakpoints from '../breakpoints';
+import {
+  phonePortrait,
+  phoneLandscape,
+  tabletPortrait,
+  tabletLandscape,
+  desktop,
+  desktopWide,
+  desktopHD,
+  desktopMega,
+}  from '../breakpoints';
 
 require('./main.scss');
 
@@ -56,14 +65,6 @@ class MsComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      phonePortrait: breakpoints.isBreakpoint(breakpoints.phonePortrait),
-      phoneLandscape: breakpoints.isBreakpoint(breakpoints.phoneLandscape),
-      tabletPortrait: breakpoints.isBreakpoint(breakpoints.tabletPortrait),
-      tabletLandscape: breakpoints.isBreakpoint(breakpoints.tabletLandscape),
-      desktop: breakpoints.isBreakpoint(breakpoints.desktop),
-      desktopWide: breakpoints.isBreakpoint(breakpoints.desktopWide),
-      desktopHD: breakpoints.isBreakpoint(breakpoints.desktopHD),
-      desktopMega: breakpoints.isBreakpoint(breakpoints.desktopMega),
       currentLink: null,
       menu: [
         { caption: 'Магазин', subItems: [
@@ -122,50 +123,70 @@ class MsComponent extends React.Component {
     }
   }
 
-  updateDimensions() {
-    const breakpoint = {
-      phonePortrait: breakpoints.isBreakpoint(breakpoints.phonePortrait),
-      phoneLandscape: breakpoints.isBreakpoint(breakpoints.phoneLandscape),
-      tabletPortrait: breakpoints.isBreakpoint(breakpoints.tabletPortrait),
-      tabletLandscape: breakpoints.isBreakpoint(breakpoints.tabletLandscape),
-      desktop: breakpoints.isBreakpoint(breakpoints.desktop),
-      desktopWide: breakpoints.isBreakpoint(breakpoints.desktopWide),
-      desktopHD: breakpoints.isBreakpoint(breakpoints.desktopHD),
-      desktopMega: breakpoints.isBreakpoint(breakpoints.desktopMega)
-    }
-    // console.log(breakpoint);
-    
-    this.setState(breakpoint);
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions.bind(this));
-  }
-
   navClick(e, tag) {
     tag.stopPropagation();
-    console.log(tag.target.className, e);
-    console.log(tag.target);
-    console.log(tag);
     this.setState({ currentLink: (tag.target.className.indexOf('active') > -1)? '-1': e});
-    //e.target.className = (e.target.className === 'menu-active')? '': 'menu-active';
   }
 
   render() {
+    let menuItems = this.state.menu;
+    if (menuItems[0].caption === 'Вхід') {
+      menuItems.splice(0, 1);
+    }
+    switch (this.props.breakpoint){
+      case phonePortrait: {
+        if (menuItems[0].caption != 'Вхід') {
+          menuItems.unshift({ caption: 'Вхід' });
+        }
+      }
+      break;
+      case phoneLandscape: {
+      }
+      break;
+      case tabletPortrait: {
+
+      }
+      break;
+      case tabletLandscape: {
+
+      }
+      break;
+      case desktop: {
+
+      }
+      break;
+      case desktopWide: {
+
+      }
+      break;
+      case desktopHD: {
+
+      }
+      break;
+      case desktopMega: {
+
+      }
+      break;
+
+
+      default: {
+
+      }
+    }
     return (
       <section className="ms">
         <div className="logo">
           <a href="http://microsoft.com">
             <img src={require('../../images/ms/microsoft.png')} />
           </a>
-          {(this.state.tabletLandscape || this.state.desktop || this.state.desktopWide || this.state.desktopHD || this.state.desktopMega )? (<nav onClick={ this.navClick.bind(this, 'menu') }><Menu items={ this.state.menu } /></nav>): null}
+          {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD || this.props.breakpoint == desktopMega )? (<nav onClick={ this.navClick.bind(this, 'menu') }><Menu items={ menuItems } /></nav>): null}
         </div>
         <div className="navi">
           <div className="search">
-            {(this.state.tabletLandscape || this.state.desktop || this.state.desktopWide || this.state.desktopHD || this.state.desktopMega )? <Search />: null}
+            {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD || this.props.breakpoint == desktopMega )? <Search />: null}
             
             <a href="#" className={ (this.state.currentLink === 'search')? 'search-active': '' } onClick={ this.navClick.bind(this, 'search') } />
-            {(this.state.phonePortrait || this.state.phonePortrait || this.state.tabletPortrait || this.state.tabletLandscape) ? <div><Search /></div> : null}
+            {(this.props.breakpoint == phonePortrait || this.props.breakpoint == phonePortrait || this.props.breakpoint == tabletPortrait || this.props.breakpoint == tabletLandscape) ? <div><Search /></div> : null}
           </div>
           <div className="basket">
             <a href="#">
@@ -173,15 +194,16 @@ class MsComponent extends React.Component {
               <span>0</span>
             </a>
           </div>
-          {(this.state.phonePortrait
-            || this.state.phoneLandscape
-            || this.state.tabletPortrait )?
+          {
+          (this.props.breakpoint == phonePortrait
+            || this.props.breakpoint == phoneLandscape
+            || this.props.breakpoint == tabletPortrait )?
             (<nav>
               <a href="#" className={ (this.state.currentLink === 'menu')? 'menu-active': '' }
              onClick={ this.navClick.bind(this, 'menu') }/>
-              <Menu items={ this.state.menu } />
+              <Menu items={ menuItems } />
              </nav>): null}
-          {(this.state.phonePortrait)? null: <a href="">Вхід</a>}
+          {(this.props.breakpoint == phonePortrait)? null: <a href="">Вхід</a>}
           
         </div>
       </section>

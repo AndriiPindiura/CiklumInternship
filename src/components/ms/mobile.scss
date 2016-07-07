@@ -204,7 +204,7 @@
             width: 48px;
             height: 100%;
 
-            >a {
+            a {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -214,11 +214,12 @@
                 font-family: "shell-icons";
                 font-size: .75em;
                 text-decoration: none;
+
+                span {
+                    margin-left: 3px;
+                }
             }
 
-            >span {
-                margin-left: 3px;
-            }
         }
     }
 
