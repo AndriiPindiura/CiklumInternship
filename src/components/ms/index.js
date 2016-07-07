@@ -186,7 +186,7 @@ class MsComponent extends React.Component {
             {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD || this.props.breakpoint == desktopMega )? <Search />: null}
             
             <a href="#" className={ (this.state.currentLink === 'search')? 'search-active': '' } onClick={ this.navClick.bind(this, 'search') } />
-            {(this.props.breakpoint == phonePortrait || this.props.breakpoint == phonePortrait || this.props.breakpoint == tabletPortrait || this.props.breakpoint == tabletLandscape) ? <div><Search /></div> : null}
+            {(this.props.breakpoint == phonePortrait || this.props.breakpoint == phoneLandscape || this.props.breakpoint == tabletPortrait || this.props.breakpoint == tabletLandscape) ? <div><Search /></div> : null}
           </div>
           <div className="basket">
             <a href="#">

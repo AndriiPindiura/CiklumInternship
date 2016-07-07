@@ -53,47 +53,52 @@
                 top: 48px;
                 background: #f2f2f2;
 
-                input {
-                    display: block;
-                    float: left;
-                    border: 0;
-                    height: 30px;
-                    font-family: wf_segoe-ui_normal,Tahoma,Verdana,Arial,sans-serif;
+                div {
+                    display: flex;
+                    width: 75%;
 
-                    &:focus {
-                        outline: 0;
+                    input {
+                        display: block;
+                        flex-grow: 2;
+                        // float: left;
+                        border: 0;
+                        height: 30px;
+                        font-family: wf_segoe-ui_normal,Tahoma,Verdana,Arial,sans-serif;
+
+                        &:focus {
+                            outline: 0;
+                        }
+
+                        &::-webkit-input-placeholder {
+                            color: #2f2f2f;
+                            opacity: 1;
+                        }
+                        &::-moz-placeholder {
+                            color: #2f2f2f;
+                            opacity: 1;
+                        }/* Firefox 19+ */
+                        &:-moz-placeholder {
+                            color: #2f2f2f;
+                            opacity: 1;
+                        }/* Firefox 18- */
+                        &:-ms-input-placeholder {
+                            color: #2f2f2f;
+                            opacity: 1;
+                        }
                     }
 
-                    &::-webkit-input-placeholder {
-                        color: #2f2f2f;
-                        opacity: 1;
-                    }
-                    &::-moz-placeholder {
-                        color: #2f2f2f;
-                        opacity: 1;
-                    }/* Firefox 19+ */
-                    &:-moz-placeholder {
-                        color: #2f2f2f;
-                        opacity: 1;
-                    }/* Firefox 18- */
-                    &:-ms-input-placeholder {
-                        color: #2f2f2f;
-                        opacity: 1;
+                    button {
+                        width: 33px;
+                        height: 30px;
+                        border: 0;
+                        background: #0078D7 url('../../images/ms/searchblue.png') no-repeat center;
+
+                        &:focus {
+                            background-color: #0060ac;
+                            outline: 0;
+                        }
                     }
                 }
-
-                button {
-                    width: 33px;
-                    height: 30px;
-                    border: 0;
-                    background: #0078D7 url('../../images/ms/searchblue.png') no-repeat center;
-
-                    &:focus {
-                        background-color: #0060ac;
-                        outline: 0;
-                    }
-                }
-
             }
         }
 
