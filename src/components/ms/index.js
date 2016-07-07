@@ -6,114 +6,48 @@ import * as breakpoints from '../breakpoints';
 
 require('./main.scss');
 
-// class Menu extends React.Component {
-//   render () {
-//     return (
-//         <nav>
-//           <ul>
-//             <li><a href="">Вхід</a></li>
-//             <li>
-//               <a href="">Магазин</a>
-//               <ul>
-//                 <li><a href="">Домашня сторінка Магазину</a></li>
-//                 <li><a href="">Office</a>
-//                   <ul>
-//                     <li><a href="">Всі версії Office</a></li>
-//                     <li><a href="">Програмні комплекси Office</a></li>
-//                     <li><a href="">Усі програми Office</a></li>
-//                     <li><a href="">Office для вашого Mac</a></li>
-//                     <li><a href="">Office 365</a></li>
-//                     <li><a href="">Порівняння програмних комплексів Office</a></li>
-//                     <li><a href="">Мовні пакети Office</a></li>
-//                   </ul>
-//                 </li>
-//                 <li>
-//                   <a href="">Windows</a>
-//                   <ul>
-//                     <li><a href="">Windows 10 Home</a></li>
-//                     <li><a href="">Windows 10 Pro</a></li>
-//                   </ul>
-//                 </li>
-//               </ul>
-//             </li>
-//             <li>
-//               <a href="">Продукти</a>
-//               <ul>
-//                 <li>
-//                   <a href="">Програмне забезпечення та служби</a>
-//                   <ul>
-//                     <li><a href="">Windows</a></li>
-//                     <li><a href="">Office</a></li>
-//                     <li><a href="">Безкоштовні завантаження та безпека</a></li>
-//                     <li><a href="">Internet Explorer</a></li>
-//                     <li><a href="">Microsoft Edge</a></li>
-//                     <li><a href="">Skype</a></li>
-//                     <li><a href="">OneNote</a></li>
-//                   </ul>
-//                 </li>
-//                 <li>
-//                   <a href="">Пристрої та Xbox</a>
-//                   <ul>
-//                     <li><a href="">Комп’ютерні аксесуари</a></li>
-//                     <li><a href="">Microsoft Lumia</a></li>
-//                   </ul>
-//                 </li>
-//                 <li>
-//                   <a href="">Для бізнесу</a>
-//                   <ul>
-//                     <li><a href="">Microsoft Azure</a></li>
-//                     <li><a href="">Microsoft Dynamics</a></li>
-//                     <li><a href="">Windows для бізнесу</a></li>
-//                     <li><a href="">Office для бізнесу</a></li>
-//                     <li><a href="">Skype для бізнесу</a></li>
-//                     <li><a href="">Корпоративні рішення</a></li>
-//                     <li><a href="">Рішення для малого бізнесу</a></li>
-//                     <li><a href="">Знайти постачальника рішень</a></li>
-//                   </ul>
-//                 </li>
-//                 <li>
-//                   <a href="">Для IT-фахівців і розробників</a>
-//                   <ul>
-//                     <li><a href="">Розробка програм Windows</a></li>
-//                     <li><a href="">Microsoft Azure</a></li>
-//                     <li><a href="">MSDN</a></li>
-//                     <li><a href="">Visual Studio</a></li>
-//                   </ul>
-//                 </li>
-//                 <li>
-//                   <a href="">Освіта</a>
-//                   <ul>
-//                     <li><a href="">Освіта</a></li>
-//                   </ul>
-//                 </li>
-//               </ul>
-//             </li>
-//             <li>
-//               <a href="">Підтримка</a>
-//             </li>
-//           </ul>
-//         </nav>
-
-//     );
-//   }
-// }
-
-
 class Menu extends React.Component {
-  click(e) {
-    console.log(e.target);
-    e.target.className = 'active';
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentLink: null
+    }
+  }
+  linkClick(e, tag) {
+    tag.stopPropagation();
+    this.setState({ currentLink: (tag.target.className === 'active')? '-1': e });
+  }
+  divClick() {
+    this.setState({ currentLink: '-1' });
   }
   render() {
     return (
-      <ul>
-        {this.props.items.map((item, i) => {
-          return (<li key={ Date.now().toString() + i }>
-            <a href="#" onClick={this.click}>{item.caption}</a>
-            {(item.subItems != undefined)? <Menu items={item.subItems} />: null}
-          </li>)
-        })}
-      </ul>
+      <div onClick={this.divClick.bind(this)}>
+        <ul>
+          {this.props.items.map((item, i) => {
+            let key = '';
+            for (let char = 0, l = item.caption.length; char < l; char++) {
+              key = key + (item.caption.charCodeAt(char) + i);
+            }
+            key = key.substr(0, 8);
+            return (<li key={ key } className={ (item.subItems === undefined)?null:'dropdown' }>
+              <a href="#" key={ key } className={(this.state.currentLink == key)?'active':null} onClick={this.linkClick.bind(this, key)}>{item.caption}</a>
+              {(item.subItems != undefined)? <Menu items={item.subItems} />: null}
+            </li>)
+          })}
+        </ul>
+      </div>
+    );
+  }
+}
+
+class Search extends React.Component {
+  render() {
+    return (
+      <div>
+        <input type="search" placeholder="Поушк на веб-сайті Microsoft.com"/>
+        <button />
+      </div>
     );
   }
 }
@@ -130,6 +64,7 @@ class MsComponent extends React.Component {
       desktopWide: breakpoints.isBreakpoint(breakpoints.desktopWide),
       desktopHD: breakpoints.isBreakpoint(breakpoints.desktopHD),
       desktopMega: breakpoints.isBreakpoint(breakpoints.desktopMega),
+      currentLink: null,
       menu: [
         { caption: 'Магазин', subItems: [
           { caption: 'Домашня сторінка Магазину'},
@@ -207,27 +142,45 @@ class MsComponent extends React.Component {
     window.addEventListener('resize', this.updateDimensions.bind(this));
   }
 
+  navClick(e, tag) {
+    tag.stopPropagation();
+    console.log(tag.target.className, e);
+    console.log(tag.target);
+    console.log(tag);
+    this.setState({ currentLink: (tag.target.className.indexOf('active') > -1)? '-1': e});
+    //e.target.className = (e.target.className === 'menu-active')? '': 'menu-active';
+  }
+
   render() {
-    // console.log(window.innerWidth);
-    // console.log(breakpoints.isBreakpoint(breakpoints.phonePortrait))
-    // console.log(this.state.menu);
     return (
       <section className="ms">
         <div className="logo">
-          <img src={require('../../images/ms/microsoft.png')} />
-          {(this.state.tabletLandscape || this.state.desktop || this.state.desktopWide || this.state.desktopHD || this.state.desktopMega )? (<nav><Menu items={ this.state.menu } /></nav>): null}
+          <a href="http://microsoft.com">
+            <img src={require('../../images/ms/microsoft.png')} />
+          </a>
+          {(this.state.tabletLandscape || this.state.desktop || this.state.desktopWide || this.state.desktopHD || this.state.desktopMega )? (<nav onClick={ this.navClick.bind(this, 'menu') }><Menu items={ this.state.menu } /></nav>): null}
         </div>
         <div className="navi">
           <div className="search">
-            {(this.state.tabletLandscape || this.state.desktop || this.state.desktopWide || this.state.desktopHD || this.state.desktopMega )? <input type="text" />: null}
+            {(this.state.tabletLandscape || this.state.desktop || this.state.desktopWide || this.state.desktopHD || this.state.desktopMega )? <Search />: null}
             
-            <button></button>
+            <a href="#" className={ (this.state.currentLink === 'search')? 'search-active': '' } onClick={ this.navClick.bind(this, 'search') } />
+            {(this.state.phonePortrait || this.state.phonePortrait || this.state.tabletPortrait || this.state.tabletLandscape) ? <div><Search /></div> : null}
           </div>
           <div className="basket">
-            <img src={require('../../images/ms/basket.jpg')} />
-            <span>0</span>
+            <a href="#">
+              <img src={require('../../images/ms/basket.jpg')} />
+              <span>0</span>
+            </a>
           </div>
-          {(this.state.phonePortrait || this.state.phoneLandscape || this.state.tabletPortrait )? (<nav><Menu items={ this.state.menu } /></nav>): null}
+          {(this.state.phonePortrait
+            || this.state.phoneLandscape
+            || this.state.tabletPortrait )?
+            (<nav>
+              <a href="#" className={ (this.state.currentLink === 'menu')? 'menu-active': '' }
+             onClick={ this.navClick.bind(this, 'menu') }/>
+              <Menu items={ this.state.menu } />
+             </nav>): null}
           {(this.state.phonePortrait)? null: <a href="">Вхід</a>}
           
         </div>
