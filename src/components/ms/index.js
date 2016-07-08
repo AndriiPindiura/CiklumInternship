@@ -16,6 +16,9 @@ import {
 
 require('./main.scss');
 
+let hoverId;
+let timer = -1;
+
 class Menu extends React.Component {
   constructor(props) {
     super(props);
@@ -23,15 +26,30 @@ class Menu extends React.Component {
       currentLink: null
     }
   }
+
   linkClick(e, tag) {
     tag.stopPropagation();
     this.setState({ currentLink: (tag.target.className === 'active')? '-1': e });
   }
+
   divClick() {
     this.setState({ currentLink: '-1' });
   }
+
+  hoverTimeout(e) {
+      // console.log('timer tick');
+      // console.log(`hoverElement: ${e}, current hovered is ${hoverId}`);
+      if (e == hoverId) {
+        // console.log('activate');
+        this.setState({ currentLink: e });
+      }
+      window.clearTimeout(timer);
+  }
+
   mouseOver(e, tag) {
     tag.stopPropagation();
+    hoverId = e;
+    timer = window.setTimeout(this.hoverTimeout.bind(this, e), 500);
     // this.setState({ currentLink: (tag.target.className === 'active')? '-1': e });
   }
   render() {

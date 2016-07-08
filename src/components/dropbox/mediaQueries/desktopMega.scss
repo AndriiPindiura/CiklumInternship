@@ -1,1 +1,29 @@
 @import '../desktop';
+
+& {
+    position: relative;
+    background: $backgroundColor;
+
+    .hero {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 1770px;
+        height: 700px;
+        padding: 0;
+        background: url('../../images/dropbox/background.jpg') no-repeat;
+        z-index: 0;
+    }
+
+    div {
+        padding: 155px 0 58px;
+        z-index: 9;
+
+        h1 {
+            max-width: 450px;
+            font-size: 47px;
+            line-height: 61px;
+        }
+    }
+}

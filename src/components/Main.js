@@ -34,7 +34,7 @@ class AppComponent extends React.Component {
     return (
       <div>
         <Microsoft breakpoint={ this.state.breakpoint.name } />
-        <Dropbox />
+        <Dropbox breakpoint={ this.state.breakpoint.name } />
       </div>
     );
   }

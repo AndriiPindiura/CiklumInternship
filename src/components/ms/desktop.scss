@@ -64,6 +64,7 @@
 						width: auto;
 						max-height: 0;
 						background: $subMenuBackgroundColor;
+               			z-index: 99;
 
 						ul {
 							flex-direction: column;
@@ -158,11 +159,11 @@
 									}
 								}
 								
-								>a:hover~div {
-									display: block;
-									max-height: 100vh;
-									animation: 0;
-								}
+								// >a:hover~div {
+								// 	display: block;
+								// 	max-height: 100vh;
+								// 	animation: 0;
+								// }
 
 								@keyframes deepmenu {
 									0% {

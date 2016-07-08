@@ -1,3 +1,68 @@
 & {
+    background: $backgroundColor;
+    font-family: 'Open Sans','lucida grande','Segoe UI',arial,verdana,'lucida sans unicode',tahoma,sans-serif;
 
+    .hero {
+        display: none;
+    }
+
+    div {
+        // margin: 0 0 0 20px;
+        padding: 20px 0 5px;
+
+        h1 {
+            max-width: 350px;
+            margin: 0 auto;
+            color: $headerColor;
+            font-size: 26px;
+            -webkit-font-smoothing: antialiased;
+            font-weight: 100;
+            text-align: center;
+        }
+
+        h2 {
+            max-width: 310px;
+            margin: 20px auto;
+            color: $headerColor;
+            font-size: 16px;
+            font-weight: 100;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        div {
+            margin: 40px auto 0;
+
+            a {
+                display: inline-block;
+                margin: 0 20px;
+                padding: 14px 40px;
+                border-radius: 6px;
+                background: $buttonBackgroundColor;
+                color: $buttonTextColor;
+                font-size: 16px;
+                line-height: 21px;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            span {
+                display: block;
+                margin: 15px 0 0;
+                color: $headerColor;
+                font-size: 16px;
+                text-align: center;
+
+                a {
+                    margin: 0;
+                    padding: 0;
+                    border-bottom: 1px solid $buttonBackgroundColor;
+                    background: 0;
+                    color: $buttonBackgroundColor;
+                    font-size: 16px;
+                    line-height: 21px;
+                }
+            }
+        }
+    }
 }
