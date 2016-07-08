@@ -23,7 +23,7 @@ class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentLink: null
+      currentLink: this.props.currentLink
     }
   }
 
@@ -48,15 +48,21 @@ class Menu extends React.Component {
 
   mouseOver(e, tag) {
     tag.stopPropagation();
-    hoverId = e;
-    timer = window.setTimeout(this.hoverTimeout.bind(this, e), 500);
+    // console.log(`breakpoint: ${this.props.breakpoint}, Deep: ${this.props.deep}`)
+    if ((this.props.breakpoint === tabletLandscape || this.props.breakpoint === desktop
+      || this.props.breakpoint === desktopWide || this.props.breakpoint === desktopHD || this.props.breakpoint == desktopMega)
+      && this.props.deep > 0)
+       {
+
+      hoverId = e;
+      timer = window.setTimeout(this.hoverTimeout.bind(this, e), 100);
+    }
     // this.setState({ currentLink: (tag.target.className === 'active')? '-1': e });
   }
   render() {
     const linkClass = classNames({
       'active': true
     });
-
     return (
       <div onClick={this.divClick.bind(this)}>
         <ul>
@@ -68,7 +74,7 @@ class Menu extends React.Component {
             key = key.substr(0, 8);
             return (<li key={ key } className={ (item.subItems === undefined)? null: 'dropdown' }>
               <a href="#" key={ key } className={(this.state.currentLink == key)? linkClass: null} onClick={this.linkClick.bind(this, key)} onMouseOver={ this.mouseOver.bind(this, key) }>{item.caption}</a>
-              {(item.subItems != undefined)? <Menu items={item.subItems} />: null}
+              {(item.subItems != undefined)? <Menu items={item.subItems} deep={ this.props.deep + 1} breakpoint={ this.props.breakpoint } currentLink={ this.state.currentLink }/>: null}
             </li>)
           })}
         </ul>
@@ -155,6 +161,8 @@ class MsComponent extends React.Component {
   }
 
   navClick(e, tag) {
+    console.log(tag.target);
+    console.log(e);
     tag.stopPropagation();
     this.setState({ currentLink: (tag.target.className.indexOf('active') > -1)? '-1': e});
   }
@@ -214,14 +222,21 @@ class MsComponent extends React.Component {
           <a href="http://microsoft.com">
             <img src={require('../../images/ms/microsoft.png')} />
           </a>
-          {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD || this.props.breakpoint == desktopMega )? (<nav onClick={ this.navClick.bind(this, 'menu') }><Menu items={ menuItems } /></nav>): null}
+          {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop
+            || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD
+            || this.props.breakpoint == desktopMega )
+            ? (<nav onClick={ this.navClick.bind(this, 'menu') }><Menu items={ menuItems } deep={ 0 } breakpoint={ this.props.breakpoint } currentLink={ this.state.currentLink }/></nav>)
+            : null}
         </div>
         <div className="navi">
           <div className="search">
-            {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD || this.props.breakpoint == desktopMega )? <Search action={ this.searchComponentClick } />: null}
+            {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop 
+              || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD 
+              || this.props.breakpoint == desktopMega )? <Search action={ this.searchComponentClick } />: null}
             
             <a href="#" className={ (this.state.currentLink === 'search')? 'search-active': '' } onClick={ this.navClick.bind(this, 'search') } />
-            {(this.props.breakpoint == phonePortrait || this.props.breakpoint == phoneLandscape || this.props.breakpoint == tabletPortrait) ? <div><Search action={ this.searchComponentClick } /></div> : null}
+            {(this.props.breakpoint == phonePortrait || this.props.breakpoint == phoneLandscape 
+              || this.props.breakpoint == tabletPortrait) ? <div><Search action={ this.searchComponentClick } /></div> : null}
           </div>
           <div className="basket">
             <a href="#">
@@ -236,7 +251,7 @@ class MsComponent extends React.Component {
             (<nav>
               <a href="#" className={ (this.state.currentLink === 'menu')? 'menu-active': '' }
              onClick={ this.navClick.bind(this, 'menu') }/>
-              <Menu items={ menuItems } />
+              <Menu items={ menuItems } deep={ 0 } breakpoint={ this.props.breakpoint } currentLink={ this.state.currentLink }/>
              </nav>): null}
           {(this.props.breakpoint == phonePortrait)? null: <a href="">Вхід</a>}
           

@@ -282,6 +282,13 @@
 					height: 30px;
 					border: 0;
 					background: $searchButtonBackground url('../../images/ms/search.png') no-repeat center;
+					background-size: 20px;
+					cursor: pointer;
+
+					// &:hover {
+					// 	background-image: url('../../images/ms/searchblue.png');
+					// }
+
 
 					&:focus {
 						// background-color: #0060ac;
