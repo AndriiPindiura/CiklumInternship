@@ -1,5 +1,6 @@
 & {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     height: 48px;
@@ -17,7 +18,7 @@
         align-items: center;
         justify-content: flex-end;
         height: 100%;
-        
+
         .search {
             width: 44px;
             height: 48px;
@@ -35,7 +36,7 @@
             }
 
             .search-active {
-                background-color:#f2f2f2;
+                background-color: $subMenuBackgroundColor;
             }
 
             .search-active~div {
@@ -43,15 +44,15 @@
             }
 
             >div {
-                position: absolute;
                 display: none;
+                position: absolute;
+                top: 48px;
+                left: 0;
                 align-items: center;
                 justify-content: center;
                 width: 100%;
                 height: 75px;
-                left: 0;
-                top: 48px;
-                background: #f2f2f2;
+                background: $subMenuBackgroundColor;
 
                 div {
                     display: flex;
@@ -60,9 +61,9 @@
                     input {
                         display: block;
                         flex-grow: 2;
-                        // float: left;
-                        border: 0;
                         height: 30px;
+					    padding: 0 10px;
+                        border: 0;
                         font-family: wf_segoe-ui_normal,Tahoma,Verdana,Arial,sans-serif;
 
                         &:focus {
@@ -70,19 +71,22 @@
                         }
 
                         &::-webkit-input-placeholder {
-                            color: #2f2f2f;
+                            color: $linkColor;
                             opacity: 1;
                         }
+
                         &::-moz-placeholder {
-                            color: #2f2f2f;
+                            color: $linkColor;
                             opacity: 1;
-                        }/* Firefox 19+ */
+                        }// Firefox 19+
+
                         &:-moz-placeholder {
-                            color: #2f2f2f;
+                            color: $linkColor;
                             opacity: 1;
-                        }/* Firefox 18- */
+                        }// Firefox 18-
+
                         &:-ms-input-placeholder {
-                            color: #2f2f2f;
+                            color: $linkColor;
                             opacity: 1;
                         }
                     }
@@ -91,11 +95,11 @@
                         width: 33px;
                         height: 30px;
                         border: 0;
-                        background: #0078D7 url('../../images/ms/searchblue.png') no-repeat center;
+                        background: $searchMobileButtonBackgroundColor url('../../images/ms/searchblue.png') no-repeat center;
 
                         &:focus {
-                            background-color: #0060ac;
                             outline: 0;
+                            background-color: $searchMobileButtonFocusedBackgroundColor;
                         }
                     }
                 }
@@ -108,7 +112,7 @@
 
             &:hover {
                 height: 100%;
-                background: #f2f2f2 url('../../images/ms/menu.jpg') no-repeat center;
+                background: $subMenuBackgroundColor url('../../images/ms/menu.jpg') no-repeat center;
             }
 
             >a {
@@ -120,16 +124,16 @@
 
             >div {
                 display: flex;
-                flex-direction: column;
                 position: absolute;
                 top: 48px;
                 right: 0;
+                flex-direction: column;
                 width: 0;
-                min-height: calc(100% - 48px);
-                list-style: none;
-                background: #f2f2f2;
-                overflow: hidden;
+                min-height: calc(100vh - 48px);
                 transition: width .3s ease-out;
+                background: $subMenuBackgroundColor;
+                list-style: none;
+                overflow: hidden;
 
                 ul {
                     padding: 0;
@@ -137,13 +141,12 @@
                     li {
                         display: inline;
                         line-height: 48px;
+
                         div {
                             position: relative;
-                            display: flex;
-                            flex-direction: column;
                             max-height: 0;
-                            overflow: hidden;
                             transition: max-height .2s ease-out;
+                            // overflow: hidden;
                         }
                     }
                 }
@@ -157,35 +160,59 @@
                 a {
                     display: block;
                     padding: 0 12px;
-                    color: #2f2f2f;
-                    font-family: "Segoe UI","wf_segoe-ui_normal","Arial",sans-serif;
+                    color: $linkColor;
+                    font-family: 'Segoe UI','wf_segoe-ui_normal','Arial',sans-serif;
                     line-height: 48px;
                     text-decoration: none;
                 }
 
                 >ul {
                     >li {
-                        >.active~div {
-                            max-height: 100vh;
-                            overflow: auto;
-                            border-left: 1px solid rgba(0,0,0,0.05);
-                            border-bottom: 1px solid rgba(0,0,0,0.3);
-                            border-right: 1px solid rgba(0,0,0,0.1);
-                            background: #e5e5e5;
-                            transition: max-height .3s ease-in;
+                        div {
+                            display: none;
                         }
+
+                        >.active~div {
+                            display: block;
+                            max-height: 100vh;
+                            border-right: 1px solid $subMenuBorderRightColor;
+                            border-bottom: 1px solid $subMenuBorderBottomColor;
+                            border-left: 1px solid $subMenuBorderLeftColor;
+                            background: $subMenuLevel2BackgroundColor;
+                            animation: submenu .3s;
+                        }
+
+                        @keyframes submenu {
+						0% {
+							max-height: 0;
+							overflow: hidden;
+						}
+
+						25% {
+							max-height: 25vh;
+						}
+
+						75% {
+							max-height: 50vh;
+						}
+
+						100% {
+							max-height: 100vh;
+							overflow: visible;
+						}
+					}
 
                         >div {
                             >ul {
                                 >li {
                                     >.active~div {
+                                        display: block;
                                         max-height: 100vh;
-                                        overflow: auto;
-                                        border-left: 1px solid rgba(0,0,0,0.05);
-                                        border-bottom: 1px solid rgba(0,0,0,0.3);
-                                        border-right: 1px solid rgba(0,0,0,0.1);
-                                        background: #ddd;
-                                        transition: max-height .3s ease;
+                                        border-right: 1px solid $subMenuBorderRightColor;
+                                        border-bottom: 1px solid $subMenuBorderBottomColor;
+                                        border-left: 1px solid $subMenuBorderLeftColor;
+                                        background: $subMenuLevel3ActiveBackgroundColor;
+                                        animation: submenu .3s;
                                     }
                                 }
                             }
@@ -198,8 +225,8 @@
 
         .menu-active~div {
             width: 100%;
-            overflow: auto;
             transition: none;
+            overflow: auto;
         }
 
         .basket {
@@ -215,8 +242,8 @@
                 justify-content: center;
                 width: 100%;
                 height: 100%;
-                color: #7f7f7f;
-                font-family: "shell-icons";
+                color: $basketLinkColor;
+                font-family: 'shell-icons';
                 font-size: .75em;
                 text-decoration: none;
 
@@ -229,11 +256,11 @@
 
         >a {
             padding: 0 10px;
-            color: #505050;
+            color: $loginLinkColor;
+            font-family: 'Segoe UI','Segoe UI Web Regular','Segoe UI Symbol','Helvetica Neue','BBAlpha Sans','S60 Sans',Arial,sans-serif;
+            font-size: 86%;
             line-height: 48px;
             text-decoration: none;
-            font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
-            font-size: 86%;
         }
 
     }

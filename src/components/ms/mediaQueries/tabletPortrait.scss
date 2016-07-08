@@ -1,1 +1,18 @@
 @import '../mobile';
+& {
+    .navi {
+        // nav {
+
+        //     >div {
+        //         min-height: calc(100% - 123px);
+        //     }
+        // }
+
+        .menu-active~div {
+            width: 252px;
+            // height: calc(100% - 123px);
+        }
+
+ 
+    }
+}

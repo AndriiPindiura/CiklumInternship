@@ -2,6 +2,7 @@
 'use strict';
 
 import React from 'react';
+import classNames from 'classnames';
 import {
   phonePortrait,
   phoneLandscape,
@@ -10,7 +11,7 @@ import {
   desktop,
   desktopWide,
   desktopHD,
-  desktopMega,
+  desktopMega
 }  from '../breakpoints';
 
 require('./main.scss');
@@ -29,7 +30,15 @@ class Menu extends React.Component {
   divClick() {
     this.setState({ currentLink: '-1' });
   }
+  mouseOver(e, tag) {
+    tag.stopPropagation();
+    // this.setState({ currentLink: (tag.target.className === 'active')? '-1': e });
+  }
   render() {
+    const linkClass = classNames({
+      'active': true
+    });
+
     return (
       <div onClick={this.divClick.bind(this)}>
         <ul>
@@ -39,8 +48,8 @@ class Menu extends React.Component {
               key = key + (item.caption.charCodeAt(char) + i);
             }
             key = key.substr(0, 8);
-            return (<li key={ key } className={ (item.subItems === undefined)?null:'dropdown' }>
-              <a href="#" key={ key } className={(this.state.currentLink == key)?'active':null} onClick={this.linkClick.bind(this, key)}>{item.caption}</a>
+            return (<li key={ key } className={ (item.subItems === undefined)? null: 'dropdown' }>
+              <a href="#" key={ key } className={(this.state.currentLink == key)? linkClass: null} onClick={this.linkClick.bind(this, key)} onMouseOver={ this.mouseOver.bind(this, key) }>{item.caption}</a>
               {(item.subItems != undefined)? <Menu items={item.subItems} />: null}
             </li>)
           })}
@@ -51,9 +60,13 @@ class Menu extends React.Component {
 }
 
 class Search extends React.Component {
+  searchClick(e) {
+    e.stopPropagation();
+    //this.props.action(e);
+  }
   render() {
     return (
-      <div>
+      <div onClick={ this.searchClick.bind(this) }>
         <input type="search" placeholder="Поушк на веб-сайті Microsoft.com"/>
         <button />
       </div>
@@ -128,6 +141,10 @@ class MsComponent extends React.Component {
     this.setState({ currentLink: (tag.target.className.indexOf('active') > -1)? '-1': e});
   }
 
+  searchComponentClick(e) {
+    // console.log(e);
+  }
+
   render() {
     let menuItems = this.state.menu;
     if (menuItems[0].caption === 'Вхід') {
@@ -174,7 +191,7 @@ class MsComponent extends React.Component {
       }
     }
     return (
-      <section className="ms">
+      <section className="ms" onClick={ this.navClick.bind(this, '-1')} >
         <div className="logo">
           <a href="http://microsoft.com">
             <img src={require('../../images/ms/microsoft.png')} />
@@ -183,10 +200,10 @@ class MsComponent extends React.Component {
         </div>
         <div className="navi">
           <div className="search">
-            {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD || this.props.breakpoint == desktopMega )? <Search />: null}
+            {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD || this.props.breakpoint == desktopMega )? <Search action={ this.searchComponentClick } />: null}
             
             <a href="#" className={ (this.state.currentLink === 'search')? 'search-active': '' } onClick={ this.navClick.bind(this, 'search') } />
-            {(this.props.breakpoint == phonePortrait || this.props.breakpoint == phoneLandscape || this.props.breakpoint == tabletPortrait || this.props.breakpoint == tabletLandscape) ? <div><Search /></div> : null}
+            {(this.props.breakpoint == phonePortrait || this.props.breakpoint == phoneLandscape || this.props.breakpoint == tabletPortrait) ? <div><Search action={ this.searchComponentClick } /></div> : null}
           </div>
           <div className="basket">
             <a href="#">

@@ -17,6 +17,7 @@
     "serve:dist": "node server.js --env=dist",
     "start": "node server.js --env=dev",
     "test": "karma start",
+    "css": "scss-lint src/components/**/*.scss --config lint.yml",
     "test:watch": "karma start --autoWatch=true --singleRun=false"
   },
   "repository": "",

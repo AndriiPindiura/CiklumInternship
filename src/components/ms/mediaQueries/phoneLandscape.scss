@@ -1,24 +1,18 @@
 @import '../mobile';
+
 & {
     .navi {
-        // .search {
-        //     >div {
-        //         input {
-        //             width: 75%;
-        //         }
-        //     }
-        // }
 
         nav {
 
             >div {
-                min-height: calc(100% - 123px);
+                min-height: calc("100vh - 123px");
             }
         }
 
         .menu-active~div {
             width: 252px;
-            height: calc(100% - 123px);
+            height: auto;
         }
 
     }
