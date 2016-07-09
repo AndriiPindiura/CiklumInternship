@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: space-between;
     height: 48px;
+    background:$searchButtonBackground;
 
     .logo {
         img {
@@ -175,7 +176,7 @@
 
                         >.active~div {
                             display: block;
-                            max-height: 100vh;
+                            max-height: 1000vh;
                             border-right: 1px solid $subMenuBorderRightColor;
                             border-bottom: 1px solid $subMenuBorderBottomColor;
                             border-left: 1px solid $subMenuBorderLeftColor;
@@ -197,9 +198,14 @@
 							max-height: 50vh;
 						}
 
-						100% {
+						99% {
 							max-height: 100vh;
 							overflow: visible;
+						}
+
+						100% {
+							max-height: initial;
+							// overflow: visible;
 						}
 					}
 
@@ -208,7 +214,7 @@
                                 >li {
                                     >.active~div {
                                         display: block;
-                                        max-height: 100vh;
+                                        max-height: 1000vh;
                                         border-right: 1px solid $subMenuBorderRightColor;
                                         border-bottom: 1px solid $subMenuBorderBottomColor;
                                         border-left: 1px solid $subMenuBorderLeftColor;

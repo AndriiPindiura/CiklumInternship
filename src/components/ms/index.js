@@ -20,35 +20,25 @@ let hoverId;
 let timer = -1;
 
 class Menu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentLink: this.props.currentLink
-    }
-  }
-
   linkClick(e, tag) {
     tag.stopPropagation();
-    this.setState({ currentLink: (tag.target.className === 'active')? '-1': e });
+    this.props.actions.setCurrentLink({ deep: this.props.deep, item: e});
+    this.props.actions.setCurrentLink((tag.target.className.indexOf('active') > -1)? { deep: this.props.deep, item: null}: { deep: this.props.deep, item: e});
   }
 
-  divClick() {
-    this.setState({ currentLink: '-1' });
+  divClick(e) {
+    e.stopPropagation();
   }
 
   hoverTimeout(e) {
-      // console.log('timer tick');
-      // console.log(`hoverElement: ${e}, current hovered is ${hoverId}`);
       if (e == hoverId) {
-        // console.log('activate');
-        this.setState({ currentLink: e });
+        this.props.actions.setCurrentLink({ deep: this.props.deep, item: e});
       }
       window.clearTimeout(timer);
   }
 
   mouseOver(e, tag) {
     tag.stopPropagation();
-    // console.log(`breakpoint: ${this.props.breakpoint}, Deep: ${this.props.deep}`)
     if ((this.props.breakpoint === tabletLandscape || this.props.breakpoint === desktop
       || this.props.breakpoint === desktopWide || this.props.breakpoint === desktopHD || this.props.breakpoint == desktopMega)
       && this.props.deep > 0)
@@ -57,7 +47,6 @@ class Menu extends React.Component {
       hoverId = e;
       timer = window.setTimeout(this.hoverTimeout.bind(this, e), 100);
     }
-    // this.setState({ currentLink: (tag.target.className === 'active')? '-1': e });
   }
   render() {
     const linkClass = classNames({
@@ -73,8 +62,8 @@ class Menu extends React.Component {
             }
             key = key.substr(0, 8);
             return (<li key={ key } className={ (item.subItems === undefined)? null: 'dropdown' }>
-              <a href="#" key={ key } className={(this.state.currentLink == key)? linkClass: null} onClick={this.linkClick.bind(this, key)} onMouseOver={ this.mouseOver.bind(this, key) }>{item.caption}</a>
-              {(item.subItems != undefined)? <Menu items={item.subItems} deep={ this.props.deep + 1} breakpoint={ this.props.breakpoint } currentLink={ this.state.currentLink }/>: null}
+              <a href="#" key={ key } className={(this.props.currentLink[this.props.deep] == key)? linkClass: null} onClick={this.linkClick.bind(this, key)} onMouseOver={ this.mouseOver.bind(this, key) }>{item.caption}</a>
+              {(item.subItems != undefined)? <Menu items={item.subItems} deep={ this.props.deep + 1} breakpoint={ this.props.breakpoint } currentLink={ this.props.currentLink } actions={ this.props.actions }/>: null}
             </li>)
           })}
         </ul>
@@ -86,7 +75,6 @@ class Menu extends React.Component {
 class Search extends React.Component {
   searchClick(e) {
     e.stopPropagation();
-    //this.props.action(e);
   }
   render() {
     return (
@@ -99,72 +87,12 @@ class Search extends React.Component {
 }
 
 class MsComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentLink: null,
-      menu: [
-        { caption: 'Магазин', subItems: [
-          { caption: 'Домашня сторінка Магазину'},
-          { caption: 'Office', subItems: [
-            { caption: 'Всі версії Office'},
-            { caption: 'Програмні комплекси Office' },
-            { caption: 'Усі програми Office' },
-            { caption: 'Office для вашого Mac' },
-            { caption: 'Office 365' },
-            { caption: 'Порівняння програмних комплексів Office' },
-            { caption: 'Мовні пакети Office' }
-          ]},
-          { caption: 'Windows', subItems: [
-            { caption: 'Windows 10 Home' },
-            { caption: 'Windows 10 Pro' }
-          ]}
-        ]},
-        { caption: 'Продукти', subItems: [
-          { caption: 'Програмне забезпечення та служби', subItems: [
-            { caption: 'Windows' },
-            { caption: 'Office' },
-            { caption: 'Безкоштовні завантаження та безпека' },
-            { caption: 'Internet Explorer' },
-            { caption: 'Microsoft Edge' },
-            { caption: 'Skype' },
-            { caption: 'OneNote' }
-          ]},
-          { caption: 'Пристрої та Xbox', subItems: [
-            { caption: 'Комп’ютерні аксесуари' },
-            { caption: 'Microsoft Lumia' }
-          ]},
-          { caption: 'Для бізнесу', subItems: [
-            { caption: 'Microsoft Azure' },
-            { caption: 'Microsoft Dynamics' },
-            { caption: 'Windows для бізнесу' },
-            { caption: 'Office для бізнесу' },
-            { caption: 'Skype для бізнесу' },
-            { caption: 'Корпоративні рішення' },
-            { caption: 'Рішення для малого бізнесу' },
-            { caption: 'Знайти постачальника рішень' }
-          ]},
-          { caption: 'Для IT-фахівців і розробників', subItems: [
-            { caption: 'Розробка програм Windows' },
-            { caption: 'Microsoft Azur' },
-            { caption: 'MSDN' },
-            { caption: 'Visual Studio' }
-          ]},
-          { caption: 'Освіта', subItems: [
-            { caption: 'Освіта' }
-          ]}
-        ]},
-        { caption: 'Підтримка' }
-        
-      ]
-    }
-  }
-
   navClick(e, tag) {
-    console.log(tag.target);
+    console.log(this.target);
     console.log(e);
     tag.stopPropagation();
-    this.setState({ currentLink: (tag.target.className.indexOf('active') > -1)? '-1': e});
+    this.props.ciklumActions.setCurrentLink(null)
+    this.props.ciklumActions.setCurrentComponent((tag.target.className.indexOf('active') > -1)? null: e);
   }
 
   searchComponentClick(e) {
@@ -172,11 +100,12 @@ class MsComponent extends React.Component {
   }
 
   render() {
-    let menuItems = this.state.menu;
+    let menuItems = this.props.ciklum.menu;
+    const breakpoint = this.props.ciklum.breakpoint.name;
     if (menuItems[0].caption === 'Вхід') {
       menuItems.splice(0, 1);
     }
-    switch (this.props.breakpoint){
+    switch (breakpoint){
       case phonePortrait: {
         if (menuItems[0].caption != 'Вхід') {
           menuItems.unshift({ caption: 'Вхід' });
@@ -217,26 +146,26 @@ class MsComponent extends React.Component {
       }
     }
     return (
-      <section className="ms" onClick={ this.navClick.bind(this, '-1')} >
+      <section className="ms" onClick={ this.navClick.bind(this, null)} >
         <div className="logo">
           <a href="http://microsoft.com">
             <img src={require('../../images/ms/microsoft.png')} />
           </a>
-          {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop
-            || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD
-            || this.props.breakpoint == desktopMega )
-            ? (<nav onClick={ this.navClick.bind(this, 'menu') }><Menu items={ menuItems } deep={ 0 } breakpoint={ this.props.breakpoint } currentLink={ this.state.currentLink }/></nav>)
+          {(breakpoint == tabletLandscape || breakpoint == desktop
+            || breakpoint == desktopWide || breakpoint == desktopHD
+            || breakpoint == desktopMega )
+            ? (<nav onClick={ this.navClick.bind(this, 'menu') }><Menu items={ menuItems } deep={ 0 } breakpoint={ breakpoint } currentLink={ this.props.ciklum.currentLink } actions={ this.props.ciklumActions }/></nav>)
             : null}
         </div>
         <div className="navi">
-          <div className="search">
-            {(this.props.breakpoint == tabletLandscape || this.props.breakpoint == desktop 
-              || this.props.breakpoint == desktopWide || this.props.breakpoint == desktopHD 
-              || this.props.breakpoint == desktopMega )? <Search action={ this.searchComponentClick } />: null}
-            
-            <a href="#" className={ (this.state.currentLink === 'search')? 'search-active': '' } onClick={ this.navClick.bind(this, 'search') } />
-            {(this.props.breakpoint == phonePortrait || this.props.breakpoint == phoneLandscape 
-              || this.props.breakpoint == tabletPortrait) ? <div><Search action={ this.searchComponentClick } /></div> : null}
+          <div className="search" onClick={ this.navClick.bind(this, 'search') }>
+            {(breakpoint == tabletLandscape || breakpoint == desktop
+              || breakpoint == desktopWide || breakpoint == desktopHD
+              || breakpoint == desktopMega )? <Search action={ this.searchComponentClick } />: null}
+
+            <a href="#" className={ (this.props.ciklum.currentComponent === 'search')? 'search-active': '' } onClick={ this.navClick.bind(this, 'search') } />
+            {(breakpoint == phonePortrait || breakpoint == phoneLandscape
+              || breakpoint == tabletPortrait) ? <div><Search action={ this.searchComponentClick } /></div> : null}
           </div>
           <div className="basket">
             <a href="#">
@@ -245,16 +174,16 @@ class MsComponent extends React.Component {
             </a>
           </div>
           {
-          (this.props.breakpoint == phonePortrait
-            || this.props.breakpoint == phoneLandscape
-            || this.props.breakpoint == tabletPortrait )?
+          (breakpoint == phonePortrait
+            || breakpoint == phoneLandscape
+            || breakpoint == tabletPortrait )?
             (<nav>
-              <a href="#" className={ (this.state.currentLink === 'menu')? 'menu-active': '' }
+              <a href="#" className={ (this.props.ciklum.currentComponent === 'menu')? 'menu-active': '' }
              onClick={ this.navClick.bind(this, 'menu') }/>
-              <Menu items={ menuItems } deep={ 0 } breakpoint={ this.props.breakpoint } currentLink={ this.state.currentLink }/>
+              <Menu items={ menuItems } deep={ 0 } breakpoint={ breakpoint } currentLink={ this.props.ciklum.currentLink } actions={ this.props.ciklumActions }/>
              </nav>): null}
-          {(this.props.breakpoint == phonePortrait)? null: <a href="">Вхід</a>}
-          
+          {(breakpoint == phonePortrait)? null: <a href="">Вхід</a>}
+
         </div>
       </section>
     );
