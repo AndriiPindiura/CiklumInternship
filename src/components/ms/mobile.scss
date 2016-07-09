@@ -125,7 +125,7 @@
             }
 
             >div {
-                display: flex;
+                // display: flex;
                 position: absolute;
                 top: 48px;
                 right: 0;
@@ -166,6 +166,11 @@
                     font-family: 'Segoe UI','wf_segoe-ui_normal','Arial',sans-serif;
                     line-height: 48px;
                     text-decoration: none;
+                    
+                    &:hover {
+					    background-color: $subMenuLevel2BackgroundColor;
+				    }
+
                 }
 
                 >ul {
@@ -182,32 +187,36 @@
                             border-left: 1px solid $subMenuBorderLeftColor;
                             background: $subMenuLevel2BackgroundColor;
                             animation: submenu .3s;
+
+                            a:hover {
+                                background-color: $subMenuLevel2ActiveBackgroundColor;
+                            }
                         }
 
                         @keyframes submenu {
-						0% {
-							max-height: 0;
-							overflow: hidden;
-						}
+                            0% {
+                                max-height: 0;
+                                overflow: hidden;
+                            }
 
-						25% {
-							max-height: 25vh;
-						}
+                            25% {
+                                max-height: 25vh;
+                            }
 
-						75% {
-							max-height: 50vh;
-						}
+                            75% {
+                                max-height: 50vh;
+                            }
 
-						99% {
-							max-height: 100vh;
-							overflow: visible;
-						}
+                            99% {
+                                max-height: 100vh;
+                                overflow: visible;
+                            }
 
-						100% {
-							max-height: initial;
-							// overflow: visible;
-						}
-					}
+                            100% {
+                                max-height: initial;
+                                // overflow: visible;
+                            }
+					    }
 
                         >div {
                             >ul {
@@ -220,6 +229,11 @@
                                         border-left: 1px solid $subMenuBorderLeftColor;
                                         background: $subMenuLevel3ActiveBackgroundColor;
                                         animation: submenu .3s;
+
+                                        a:hover {
+										    background-color: $subMenuLevel3HoverBackgroundColor;
+                                            text-decoration: underline;
+                                        }
                                     }
                                 }
                             }
