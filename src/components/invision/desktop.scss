@@ -1,3 +1,111 @@
 & {
+    background: $backgroundColor;
+    padding: 60px 0 145px;
+
+    >div {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 20px;
+
+        h2 {
+            color: $headerColor;
+            font-family: 'Open Sans', 'open-sans', sans-serif;
+            font-size: 30px;
+            font-weight: 300;
+            text-align: center;
+            text-shadow: 0 0 1px $headerColor;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+
+            input {
+                width: 280px;
+                height: 63px;
+                margin: 0 10px 0 0;
+                padding: 18px 15px 18px 48px;
+                border: 1px solid $inputBorderColor;
+                border-radius: 3px;
+                background: $headerColor url('../../images/invision/sprite.png') no-repeat;
+                color: $inputColor;
+                box-sizing: border-box;
+                font-family:  'Open Sans', 'open-sans', sans-serif;
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            input:focus {
+                outline: 0;
+            }
+            
+            input:focus::-webkit-input-placeholder {
+                opacity: .3;
+            }
+
+            input:focus::-moz-placeholder          {
+                opacity: .3;
+            }// Firefox 19+
+
+            input:focus:-moz-placeholder           {
+                opacity: .3;
+            }// Firefox 18-
+
+            input:focus:-ms-input-placeholder      {
+                opacity: .3;
+            }
+
+
+
+            .login {
+                background-position: 10px -457px;
+            }
+
+            .email {
+                background-position: 10px -369px;
+            }
+
+            .password {
+                background-position: 10px -413px;
+            }
+
+            .error {
+                border: 2px solid $inputErrorBorderColor;
+            }
+
+            button {
+                padding: 22px 40px 21px;
+                border-radius: 3px;
+                border: 1px solid $submitBackground;
+                // border: 0;
+                background: $submitBackground;
+                color: $headerColor;
+                font-family: 'brandon-grotesque', sans-serif;
+                font-size: 15px;
+                font-weight: 700;
+                text-transform: uppercase;
+                cursor: pointer;
+                transition: background .3s;
+                // text-shadow: 0 0 1px $headerColor;
+            }
+
+
+        }
+
+        p {
+            margin: 31px 0 0;
+            color: $termsColor;
+            font-family: 'Open Sans', 'open-sans', sans-serif;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.8em;
+        }
+
+        a {
+            color: $termsColor;
+        }
+    }
 
 }

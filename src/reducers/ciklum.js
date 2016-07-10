@@ -5,13 +5,14 @@
  */
 
 import * as breakpoints from '../components/breakpoints';
-import { BREAKPOINT, CIKLUM_SET_LINK, CIKLUM_SET_ACTIVE_COMPONENT } from  '../actions/const';
+import { BREAKPOINT, CIKLUM_SET_LINK, CIKLUM_SET_ACTIVE_COMPONENT, CIKLUM_SET_INPUT_CHANGE } from  '../actions/const';
 
 const initialState = {
   // breakpoint: { name: 'phonePortrait', min: 0, max: 414 },
   breakpoint: breakpoints.currentBreakpoint(),
   currentLink: [],
   currentComponent: null,
+  inputsChanged: {},
   menu: [
     { caption: 'Магазин', subItems: [
       { caption: 'Домашня сторінка Магазину'},
@@ -91,13 +92,21 @@ export default function(state = initialState, action) {
         currentLink[action.parameter.deep] = action.parameter.item;
       }
       // console.log(currentLink);
-      return Object.assign({}, state, { currentLink: currentLink })
+      return Object.assign({}, state, { currentLink: currentLink });
+    }
+
+    case CIKLUM_SET_INPUT_CHANGE: {
+      let input = state.inputsChanged;
+      // console.log(action.parameter);
+      input[action.parameter] = true;
+      // console.log(input);
+      return Object.assign({}, state, { inputsChanged: input });
     }
 
     case CIKLUM_SET_ACTIVE_COMPONENT: {
       // console.log(action.parameter);
       // return state;
-      return Object.assign({}, state, { currentComponent: action.parameter })
+      return Object.assign({}, state, { currentComponent: action.parameter });
     }
     /*
     case 'YOUR_ACTION': {

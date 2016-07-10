@@ -15,6 +15,7 @@ import * as breakpointActions from '../actions/breakpoint';
 import * as ciklumActions from '../actions/ciklum';
 import Microsoft from '../components/ms';
 import Dropbox from '../components/dropbox';
+import Invision from '../components/invision';
 // import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
@@ -30,7 +31,11 @@ class App extends Component {
   }
   render() {
     const {actions, ciklum, ciklumActions} = this.props;
-    return <Microsoft actions={actions} ciklum={ciklum} ciklumActions={ ciklumActions }/>;
+    return (<div className="ciklum">
+        <Microsoft actions={actions} ciklum={ciklum} ciklumActions={ ciklumActions }/>
+        <Dropbox actions={actions} ciklum={ciklum} ciklumActions={ ciklumActions }/>
+        <Invision actions={actions} ciklum={ciklum} ciklumActions={ ciklumActions }/>
+      </div>);
   }
 }
 /* Populated by react-webpack-redux:reducer
