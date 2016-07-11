@@ -27,7 +27,7 @@ class InvisionComponent extends React.Component {
     if (this.props.ciklum.inputsChanged[e]) {
       switch (currentClasses.replace('error', '').trim()) {
         case 'login': {
-          if (input.target.value.length <= 0) {
+          if (input.target.value.trim().length <= 0) {
             if (currentClasses.indexOf('error') == -1) {
               input.target.className = classNames(currentClasses, 'error');
             }
@@ -52,7 +52,7 @@ class InvisionComponent extends React.Component {
         }
 
         case 'password': {
-          if (input.target.value.length <= 0) {
+          if (input.target.value.trim().length <= 0) {
             if (currentClasses.indexOf('error') < 0) {
               input.target.className = classNames(currentClasses, 'error');
             }

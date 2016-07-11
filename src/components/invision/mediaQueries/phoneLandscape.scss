@@ -1,1 +1,23 @@
 @import '../mobile';
+
+& {
+    >div {
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            input {
+                display: block;
+                width: auto;
+                margin: 10px auto 0;
+            }
+
+            button {
+                width: auto;
+                margin: 10px auto 0;
+                padding: 10px 9px;
+            }
+        }
+    }
+}
