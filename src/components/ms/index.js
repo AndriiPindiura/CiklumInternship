@@ -182,7 +182,7 @@ class MsComponent extends React.Component {
              onClick={ this.navClick.bind(this, 'menu') }/>
               <Menu items={ menuItems } deep={ 0 } breakpoint={ breakpoint } currentLink={ this.props.ciklum.currentLink } actions={ this.props.ciklumActions }/>
              </nav>): null}
-          {(breakpoint == phonePortrait)? null: <a href="">Вхід</a>}
+          {(breakpoint == phonePortrait)? null: <a href="http://login.live.com/">Вхід</a>}
 
         </div>
       </section>

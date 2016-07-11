@@ -7,9 +7,40 @@ require('./main.scss');
 class OculusComponent extends React.Component {
   render() {
     return (
-      <div className="oculus-component">
-        Please edit src/components///OculusComponent.js to update this component!
-      </div>
+      <section className="oculus">
+        <ul>
+          <li>
+            <a href="">
+              <div className="eve">
+              <div>
+                <h4>Featured Content</h4>
+                <h3>EVE: Valkyrie</h3>
+              </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div className="lucky">
+              <div>
+                <h4>Included with all Rift Purchases</h4>
+                <h3>Lucky's Tale</h3>
+              </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <div className="oculus">
+              <div>
+                <h4>Featured Story</h4>
+                <h3>Over 30 Full Games Launching with Oculus Touch this Year</h3>
+              </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </section>
     );
   }
 }

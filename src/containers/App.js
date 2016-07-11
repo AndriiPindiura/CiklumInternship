@@ -16,12 +16,11 @@ import * as ciklumActions from '../actions/ciklum';
 import Microsoft from '../components/ms';
 import Dropbox from '../components/dropbox';
 import Invision from '../components/invision';
+import Oculus from '../components/oculus';
 // import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
   componentDidMount() {
-    console.log('Application mount');
-    const bp = breakpoints.currentBreakpoint();
     window.addEventListener('resize', this.updateDimensions.bind(this));
   }
 
@@ -33,8 +32,9 @@ class App extends Component {
     const {actions, ciklum, ciklumActions} = this.props;
     return (<div className="ciklum">
         <Microsoft actions={actions} ciklum={ciklum} ciklumActions={ ciklumActions }/>
-        <Dropbox actions={actions} ciklum={ciklum} ciklumActions={ ciklumActions }/>
-        <Invision actions={actions} ciklum={ciklum} ciklumActions={ ciklumActions }/>
+        <Dropbox />
+        <Invision ciklum={ciklum} ciklumActions={ ciklumActions }/>
+        <Oculus ciklum={ciklum} ciklumActions={ ciklumActions }/>
       </div>);
   }
 }
