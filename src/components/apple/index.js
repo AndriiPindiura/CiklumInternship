@@ -13,13 +13,13 @@ class AppleComponent extends React.Component {
       <footer className="apple">
         <div>
           <nav>
-            { this.props.ciklum.footerMenu.map((group) => {
+            { this.props.ciklum.footerMenu.map((group, index) => {
               return (
-                <div>
+                <div key={ Date.now().toString + index}>
                   <h4 onClick={ this.menuClick }>{ group.header }</h4>
                   <ul>
-                    { group.items.map((item) => {
-                      return (<li><a href="">{item}</a></li>)
+                    { group.items.map((item, index) => {
+                      return (<li key={ Date.now().toString + index}><a href="">{item}</a></li>)
                     }) }
                   </ul>
                 </div>
