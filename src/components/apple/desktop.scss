@@ -1,3 +1,123 @@
 & {
+    background: $backgroundColor;
+    font-family: "Myriad Set Pro","Helvetica Neue","Helvetica","Arial",sans-serif;
+    font-size: 12px;
 
+
+    div {
+        nav {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            max-height: 266px;
+            padding: 32px 22px;
+            // font-family: "Myriad Set Pro","Helvetica Neue","Helvetica","Arial",sans-serif;
+            // font-size: 12px;
+            h4 {
+                margin: 0;
+                color: $menuLinkColor;
+            }
+
+            ul {
+                margin: 10px 0 20px;
+                padding: 0;
+                list-style: none;
+
+                li {
+                    a {
+                        color: $menuLinkColor;
+                        line-height: 20px;
+                        text-decoration: none;
+                        -webkit-font-smoothing: antialiased;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+        section {
+            padding: 0 22px;
+
+            p {
+                color: $resellerColor;
+                border-bottom: 1px solid $borderColor;
+
+                a {
+                    text-decoration: none;
+                    color: $resellerLinkColor;
+
+                    &:hover {
+                        color: $menuLinkColor;
+                        text-decoration: underline;
+                    }
+                }
+            }
+
+            div {
+                display: flex;
+                // align-items: center;
+
+                div {
+                    display:  flex;
+                    flex-wrap: wrap;
+                    
+                    p {
+                        border: 0;
+                        margin: 0 26px 0 0;
+                    }
+
+                    ul {
+                        display: flex;
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+
+                        li {
+                            margin: 0 10px 0 0;
+                            padding: 0 12px 0 0;
+                            border-right: 1px solid $legalBorderColor;
+
+                            a {
+                                min-width: 0;
+                                // margin: 0 12px 0 0;
+                            }
+
+                            &:last-child {
+                                border: 0;
+                            }
+                        }
+                    }
+
+                    a {
+                        display: flex;
+                        min-width: 86px;
+                        color: $localeColor;
+                        text-decoration: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+
+                        span {
+                            width: 16px;
+                            height: 16px;
+                            margin: 0 5px 0 0;
+                            background: url('../../images/apple/usa.png');
+                        }
+                    }
+                }
+
+                .locale {
+                    justify-content: flex-end;
+                    flex-grow: 2;
+
+                    a {
+                        line-height: 16px;
+                    }
+                }
+            }
+        }
+    }
 }

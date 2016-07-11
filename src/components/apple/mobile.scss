@@ -1,3 +1,188 @@
 & {
+    background: $backgroundColor;
+    font-family: "Myriad Set Pro","Helvetica Neue","Helvetica","Arial",sans-serif;
+    font-size: 12px;
+    
+    div {
+        
+        nav {
+            padding: 32px 16px 0;
+            div {
+                border-bottom: 1px solid $borderColor;
 
+                h4 {
+                    margin: 0;
+                    color: $menuLinkColor;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 39px;
+                    cursor: pointer;
+
+                    &:after {
+                        content: '+';
+                        float: right;
+                        margin-right: 8px;
+                        transition: transform .3s ease;
+                    }
+                }
+
+                .active:after {
+                    transform: rotate(45deg);
+                }
+
+                .active~ul {
+                    max-height: 100vh;
+                    animation: submenu .5s;
+                }
+
+                @keyframes submenu {
+                    0% {
+                        max-height: 0;
+                        overflow: hidden;
+                    }
+
+                    25% {
+                        max-height: 25vh;
+                    }
+
+                    75% {
+                        max-height: 50vh;
+                    }
+
+                    99% {
+                        max-height: 100vh;
+                        overflow: visible;
+                    }
+
+                    100% {
+                        max-height: initial;
+                        // overflow: visible;
+                    }
+                }
+
+                ul {
+                    list-style: none;
+                    max-height: 0;
+                    margin: 0;
+                    padding: 0;
+                    overflow: hidden;
+
+                    li {
+                        a {
+                            padding: 0 14px;
+                            color: $localeColor;
+                            line-height: 30px;
+                            text-decoration: none;
+
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        section {
+            padding: 20px 16px;
+
+            p {
+                color: $resellerColor;
+                line-height: 20px;
+                
+                a {
+                    color: $resellerLinkColor;
+                    text-decoration: none;
+
+                    a:visited {
+                        color: $menuLinkColor;
+                        text-decoration: underline;
+                    }
+
+                    &:hover {
+                        color: $menuLinkColor;
+                        text-decoration: underline;
+                    }
+                }
+
+                span {
+                    white-space: nowrap;
+                }
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+                // align-items: center;
+
+                div {
+                    display:  flex;
+                    flex-wrap: wrap;
+                    order: 2;
+                    
+                    p {
+                        border: 0;
+                        margin: 0 26px 0 0;
+                    }
+
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+
+                        li {
+                            display: inline-block;
+                            margin: 0 10px 0 0;
+                            padding: 0 12px 0 0;
+                            border-right: 1px solid $legalBorderColor;
+
+                            a {
+                                width: auto;
+                                height: auto;
+                                // min-width: 0;
+                                line-height: 20px;
+                                // margin: 0 12px 0 0;
+                            }
+
+                            &:last-child {
+                                border: 0;
+                            }
+                        }
+                    }
+
+                    a {
+                        display: flex;
+                        // min-width: 86px;
+                        color: $localeColor;
+                        text-decoration: none;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+
+                        span {
+                            width: 16px;
+                            height: 16px;
+                            margin: 0 5px 0 0;
+                            background: url('../../images/apple/usa.png');
+                        }
+                    }
+                }
+
+                .locale {
+                    flex-direction: row;
+                    align-items: center;
+                    flex-grow: 2;
+                    order: 1;
+                    margin: 12px 0 13px;
+
+                    a {
+                        min-width: 86px;
+                        line-height: 16px;
+                    }
+                }
+            }
+            
+        }
+    }
 }

@@ -17,6 +17,7 @@ import Microsoft from '../components/ms';
 import Dropbox from '../components/dropbox';
 import Invision from '../components/invision';
 import Oculus from '../components/oculus';
+import Apple from '../components/apple';
 // import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
@@ -34,7 +35,8 @@ class App extends Component {
         <Microsoft actions={actions} ciklum={ciklum} ciklumActions={ ciklumActions }/>
         <Dropbox />
         <Invision ciklum={ciklum} ciklumActions={ ciklumActions }/>
-        <Oculus ciklum={ciklum} ciklumActions={ ciklumActions }/>
+        <Oculus />
+        <Apple ciklum={ciklum} ciklumActions={ ciklumActions }/>
       </div>);
   }
 }

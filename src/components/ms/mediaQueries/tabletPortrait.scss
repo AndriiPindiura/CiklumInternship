@@ -1,18 +1,9 @@
 @import '../mobile';
 & {
     .navi {
-        // nav {
-
-        //     >div {
-        //         min-height: calc(100% - 123px);
-        //     }
-        // }
 
         .menu-active~div {
             width: 300px;
-            // height: calc(100% - 123px);
         }
-
- 
     }
 }

@@ -6,6 +6,7 @@ import App from './containers/App';
 
 require('normalize.css/normalize.css');
 require('./theme/fonts.scss');
+// require('./theme/reset.scss');
 
 const store = configureStore();
 

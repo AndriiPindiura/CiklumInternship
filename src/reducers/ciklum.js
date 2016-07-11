@@ -66,6 +66,36 @@ const initialState = {
     ]},
     { caption: 'Підтримка' }
     
+  ],
+  footerMenu: [
+    {
+      header: 'Shop and Learn',
+      items: ['Mac', 'iPad', 'iPhone', 'Watch', 'TV', 'Music', 'iTunes', 'iPod', 'Accessories', 'Gift Cards']
+    },
+    {
+      header: 'Apple Store',
+      items: ['Find a Store', 'Genius Bar', 'Workshops and Learning', 'Youth Programs', 'Apple Store App', 'Refurbished', 'Financing', 'Reuse and Recycling', 'Order Status', 'Shopping Help']
+    },
+    {
+      header: 'For Education',
+      items: ['Apple and Education', 'Shop for College']
+    },
+    {
+      header: 'For Business',
+      items: ['Apple and Business', 'Shop for Business']
+    },
+    {
+      header: 'Account',
+      items: ['Manage Your Apple ID', 'Apple Store Account', 'iCloud.com']
+    },
+    {
+      header: 'Apple Values',
+      items: ['Environment', 'Supplier Responsibility', 'Accessibility', 'Privacy', 'Inclusion and Diversity', 'Education']
+    },
+    {
+      header: 'About Apple',
+      items: ['Apple Info', 'Newsroom', 'Job Opportunities', 'Investors', 'Events', 'Contact Apple']
+    }
   ]
 };
 
