@@ -8,7 +8,6 @@ import * as breakpoints from '../components/breakpoints';
 import { BREAKPOINT, CIKLUM_SET_LINK, CIKLUM_SET_ACTIVE_COMPONENT, CIKLUM_SET_INPUT_CHANGE } from  '../actions/const';
 
 const initialState = {
-  // breakpoint: { name: 'phonePortrait', min: 0, max: 414 },
   breakpoint: breakpoints.currentBreakpoint(),
   currentLink: [],
   currentComponent: null,
@@ -105,12 +104,10 @@ export default function(state = initialState, action) {
 
   switch(action.type) {
     case BREAKPOINT: {
-      // console.log(action.parameter);
       return Object.assign({}, state, { breakpoint: action.parameter });
     }
 
     case CIKLUM_SET_LINK: {
-      // console.log(action.parameter);
       let currentLink;
       if (action.parameter === null) {
         currentLink = state.currentLink.map((item) => {
@@ -121,21 +118,16 @@ export default function(state = initialState, action) {
         currentLink = state.currentLink;
         currentLink[action.parameter.deep] = action.parameter.item;
       }
-      // console.log(currentLink);
       return Object.assign({}, state, { currentLink: currentLink });
     }
 
     case CIKLUM_SET_INPUT_CHANGE: {
       let input = state.inputsChanged;
-      // console.log(action.parameter);
       input[action.parameter] = true;
-      // console.log(input);
       return Object.assign({}, state, { inputsChanged: input });
     }
 
     case CIKLUM_SET_ACTIVE_COMPONENT: {
-      // console.log(action.parameter);
-      // return state;
       return Object.assign({}, state, { currentComponent: action.parameter });
     }
     /*

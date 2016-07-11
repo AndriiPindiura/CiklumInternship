@@ -9,7 +9,6 @@ class AppleComponent extends React.Component {
     e.target.className = (e.target.className.indexOf('active') > -1)? '': 'active';
   }
   render() {
-    console.log(this.props.ciklum);
     return (
       <footer className="apple">
         <div>

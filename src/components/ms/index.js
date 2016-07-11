@@ -88,15 +88,12 @@ class Search extends React.Component {
 
 class MsComponent extends React.Component {
   navClick(e, tag) {
-    console.log(this.target);
-    console.log(e);
     tag.stopPropagation();
     this.props.ciklumActions.setCurrentLink(null)
     this.props.ciklumActions.setCurrentComponent((tag.target.className.indexOf('active') > -1)? null: e);
   }
 
-  searchComponentClick(e) {
-    // console.log(e);
+  searchComponentClick() {
   }
 
   render() {
