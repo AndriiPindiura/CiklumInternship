@@ -1,18 +1,18 @@
 & {
     ul {
         display: flex;
-        list-style: none;
         margin: 0;
         padding: 0;
+        list-style: none;
 
         li {
             width: 33.33333333333%;
             height: 300px;
             overflow: hidden;
-            
+
             a {
-                text-decoration: none;
                 font-family: 'Oculus Sans',Arial,Helvetica,sans-serif;
+                text-decoration: none;
             }
 
             div {
@@ -20,12 +20,13 @@
                 flex-direction: column;
                 justify-content: center;
                 height: 300px;
-                background-size: cover;
-                background-position: center center;
                 transition: transform .3s,opacity .3s;
+                background-position: center center;
+                background-size: cover;
 
                 div {
-                    background: rgba(40, 40, 40, .7);
+                    background: $glassColor;
+
                     h4 {
                         margin: 0;
                         color: $h4Color;
@@ -61,15 +62,15 @@
             &:hover {
                 a {
                     div {
-                        -webkit-transform: scale(1.1, 1.1);
                         -ms-transform: scale(1.1, 1.1);
+                        -webkit-transform: scale(1.1, 1.1);
                         transform: scale(1.1, 1.1);
 
                         div {
-                            background: rgba(40, 40, 40, .1);
-                            -webkit-transform: scale(.9, .9);
                             -ms-transform: scale(.9, .9);
+                            -webkit-transform: scale(.9, .9);
                             transform: scale(.9, .9);
+                            background: $glassHoverColor;
                         }
                     }
                 }

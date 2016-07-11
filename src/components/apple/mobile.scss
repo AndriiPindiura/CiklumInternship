@@ -2,11 +2,12 @@
     background: $backgroundColor;
     font-family: "Myriad Set Pro","Helvetica Neue","Helvetica","Arial",sans-serif;
     font-size: 12px;
-    
+
     div {
-        
+
         nav {
             padding: 32px 16px 0;
+
             div {
                 border-bottom: 1px solid $borderColor;
 
@@ -18,15 +19,15 @@
                     line-height: 39px;
                     cursor: pointer;
 
-                    &:after {
-                        content: '+';
-                        float: right;
+                    &::after {
                         margin-right: 8px;
+                        float: right;
                         transition: transform .3s ease;
+                        content: '+';
                     }
                 }
 
-                .active:after {
+                .active::after {
                     transform: rotate(45deg);
                 }
 
@@ -61,10 +62,10 @@
                 }
 
                 ul {
-                    list-style: none;
                     max-height: 0;
                     margin: 0;
                     padding: 0;
+                    list-style: none;
                     overflow: hidden;
 
                     li {
@@ -89,7 +90,7 @@
             p {
                 color: $resellerColor;
                 line-height: 20px;
-                
+
                 a {
                     color: $resellerLinkColor;
                     text-decoration: none;
@@ -116,13 +117,13 @@
                 // align-items: center;
 
                 div {
-                    display:  flex;
+                    display: flex;
                     flex-wrap: wrap;
                     order: 2;
-                    
+
                     p {
-                        border: 0;
                         margin: 0 26px 0 0;
+                        border: 0;
                     }
 
                     ul {
@@ -139,9 +140,7 @@
                             a {
                                 width: auto;
                                 height: auto;
-                                // min-width: 0;
                                 line-height: 20px;
-                                // margin: 0 12px 0 0;
                             }
 
                             &:last-child {
@@ -152,7 +151,6 @@
 
                     a {
                         display: flex;
-                        // min-width: 86px;
                         color: $localeColor;
                         text-decoration: none;
 
@@ -171,8 +169,8 @@
 
                 .locale {
                     flex-direction: row;
-                    align-items: center;
                     flex-grow: 2;
+                    align-items: center;
                     order: 1;
                     margin: 12px 0 13px;
 
@@ -182,7 +180,7 @@
                     }
                 }
             }
-            
+
         }
     }
 }

@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     height: 48px;
-    background:$searchButtonBackground;
+    background: $searchButtonBackground;
 
     .logo {
         img {
@@ -64,7 +64,7 @@
                         display: block;
                         flex-grow: 2;
                         height: 30px;
-					    padding: 0 10px;
+                        padding: 0 10px;
                         border: 0;
                         font-family: wf_segoe-ui_normal,Tahoma,Verdana,Arial,sans-serif;
 
@@ -166,9 +166,9 @@
                     font-family: 'Segoe UI','wf_segoe-ui_normal','Arial',sans-serif;
                     line-height: 48px;
                     text-decoration: none;
-                    
+
                     &:hover {
-					    background-color: $subMenuLevel2BackgroundColor;
+                        background-color: $subMenuLevel2BackgroundColor;
 				    }
 
                 }
@@ -231,7 +231,7 @@
                                         animation: submenu .3s;
 
                                         a:hover {
-										    background-color: $subMenuLevel3HoverBackgroundColor;
+                                            background-color: $subMenuLevel3HoverBackgroundColor;
                                             text-decoration: underline;
                                         }
                                     }

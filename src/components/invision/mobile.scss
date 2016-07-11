@@ -1,6 +1,6 @@
 & {
-    background: $backgroundColor;
     padding: 15px 20px 40px;
+    background: $backgroundColor;
 
     >div {
         max-width: 1320px;
@@ -26,29 +26,29 @@
                 border-radius: 4px;
                 background: $headerColor url('../../images/invision/sprite.png') no-repeat;
                 color: $inputColor;
-                box-sizing: border-box;
-                font-family:  'Open Sans', 'open-sans', sans-serif;
+                font-family: 'Open Sans', 'open-sans', sans-serif;
                 font-size: 14px;
                 font-weight: 500;
+                box-sizing: border-box;
             }
 
             input:focus {
                 outline: 0;
             }
-            
+
             input:focus::-webkit-input-placeholder {
                 opacity: .3;
             }
 
-            input:focus::-moz-placeholder          {
+            input:focus::-moz-placeholder {
                 opacity: .3;
             }// Firefox 19+
 
-            input:focus:-moz-placeholder           {
+            input:focus:-moz-placeholder {
                 opacity: .3;
             }// Firefox 18-
 
-            input:focus:-ms-input-placeholder      {
+            input:focus:-ms-input-placeholder {
                 opacity: .3;
             }
 
@@ -73,10 +73,11 @@
             button {
                 display: block;
                 width: 100%;
-                margin: 0 0 10px 0;
+                margin: 0 0 10px;
                 padding: 10px 0;
-                border-radius: 3px;
+                transition: background .3s;
                 border: 1px solid $submitBackground;
+                border-radius: 3px;
                 background: $submitBackground;
                 color: $headerColor;
                 font-family: 'brandon-grotesque', sans-serif;
@@ -84,8 +85,6 @@
                 font-weight: 700;
                 text-transform: uppercase;
                 cursor: pointer;
-                transition: background .3s;
-                // text-shadow: 0 0 1px $headerColor;
             }
         }
 
@@ -94,8 +93,8 @@
             color: $termsColor;
             font-family: 'Open Sans', 'open-sans', sans-serif;
             font-size: 12px;
-            text-align: center;
             line-height: 1.8em;
+            text-align: center;
         }
 
         a {

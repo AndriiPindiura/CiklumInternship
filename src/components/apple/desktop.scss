@@ -9,8 +9,10 @@
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
+            max-width: 980px;
             max-height: 266px;
-            padding: 32px 22px;
+            margin: 0 auto;
+            padding: 32px 22px 0;
             // font-family: "Myriad Set Pro","Helvetica Neue","Helvetica","Arial",sans-serif;
             // font-size: 12px;
             h4 {
@@ -26,9 +28,9 @@
                 li {
                     a {
                         color: $menuLinkColor;
+                        -webkit-font-smoothing: antialiased;
                         line-height: 20px;
                         text-decoration: none;
-                        -webkit-font-smoothing: antialiased;
 
                         &:hover {
                             text-decoration: underline;
@@ -37,16 +39,19 @@
                 }
             }
         }
+
         section {
-            padding: 0 22px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 4px 22px 24px;
 
             p {
-                color: $resellerColor;
                 border-bottom: 1px solid $borderColor;
+                color: $resellerColor;
 
                 a {
-                    text-decoration: none;
                     color: $resellerLinkColor;
+                    text-decoration: none;
 
                     &:hover {
                         color: $menuLinkColor;
@@ -60,12 +65,12 @@
                 // align-items: center;
 
                 div {
-                    display:  flex;
+                    display: flex;
                     flex-wrap: wrap;
-                    
+
                     p {
-                        border: 0;
                         margin: 0 26px 0 0;
+                        border: 0;
                     }
 
                     ul {
@@ -110,8 +115,8 @@
                 }
 
                 .locale {
-                    justify-content: flex-end;
                     flex-grow: 2;
+                    justify-content: flex-end;
 
                     a {
                         line-height: 16px;
