@@ -22,7 +22,6 @@ let timer = -1;
 class Menu extends React.Component {
   linkClick(e, tag) {
     tag.stopPropagation();
-    this.props.actions.setCurrentLink({ deep: this.props.deep, item: e});
     this.props.actions.setCurrentLink((tag.target.className.indexOf('active') > -1)? { deep: this.props.deep, item: null}: { deep: this.props.deep, item: e});
   }
 
@@ -39,6 +38,7 @@ class Menu extends React.Component {
 
   mouseOver(e, tag) {
     tag.stopPropagation();
+    tag.preventDefault();
     if ((this.props.breakpoint === tabletLandscape || this.props.breakpoint === desktop
       || this.props.breakpoint === desktopWide || this.props.breakpoint === desktopHD || this.props.breakpoint == desktopMega)
       && this.props.deep > 0)
@@ -62,8 +62,11 @@ class Menu extends React.Component {
             }
             key = key.substr(0, 8);
             return (<li key={ key } className={ (item.subItems === undefined)? null: 'dropdown' }>
-              <a href="#" key={ key } className={(this.props.currentLink[this.props.deep] == key)? linkClass: null} onClick={this.linkClick.bind(this, key)} onMouseOver={ this.mouseOver.bind(this, key) }>{item.caption}</a>
-              {(item.subItems != undefined)? <Menu items={item.subItems} deep={ this.props.deep + 1} breakpoint={ this.props.breakpoint } currentLink={ this.props.currentLink } actions={ this.props.actions }/>: null}
+              <a href="#" key={ key } className={(this.props.currentLink[this.props.deep] == key)? linkClass: null}
+                onClick={this.linkClick.bind(this, key)} onMouseOver={ this.mouseOver.bind(this, key) }>{item.caption}</a>
+              {(item.subItems != undefined)? <Menu items={item.subItems} deep={ this.props.deep + 1}
+                breakpoint={ this.props.breakpoint } currentLink={ this.props.currentLink }
+                actions={ this.props.actions }/>: null}
             </li>)
           })}
         </ul>
@@ -143,7 +146,7 @@ class MsComponent extends React.Component {
       }
     }
     return (
-      <section className="ms" onClick={ this.navClick.bind(this, null)} >
+      <section className="ms" onClick={ this.navClick.bind(this, null) }>
         <div className="logo">
           <a href="http://microsoft.com">
             <img src={require('../../images/ms/microsoft.png')} />

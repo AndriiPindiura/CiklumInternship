@@ -9,7 +9,7 @@ import { BREAKPOINT, CIKLUM_SET_LINK, CIKLUM_SET_ACTIVE_COMPONENT, CIKLUM_SET_IN
 
 const initialState = {
   breakpoint: breakpoints.currentBreakpoint(),
-  currentLink: [],
+  currentLink: [{}],
   currentComponent: null,
   inputsChanged: {},
   menu: [
@@ -100,7 +100,6 @@ const initialState = {
 
 export default function(state = initialState, action) {
   /* Keep the reducer clean - do not mutate the original state. */
-  //let nextState = Object.assign({}, state);
 
   switch(action.type) {
     case BREAKPOINT: {
@@ -108,14 +107,15 @@ export default function(state = initialState, action) {
     }
 
     case CIKLUM_SET_LINK: {
-      let currentLink;
+      let currentLink = state.currentLink.map((item) => {
+        return item;
+      });
       if (action.parameter === null) {
-        currentLink = state.currentLink.map((item) => {
-          return item = -1;
-        });
+        for (let i = 0, l = currentLink.length; i < l; i++) {
+            currentLink[i] = -1;
+        }
       }
       else {
-        currentLink = state.currentLink;
         currentLink[action.parameter.deep] = action.parameter.item;
       }
       return Object.assign({}, state, { currentLink: currentLink });
