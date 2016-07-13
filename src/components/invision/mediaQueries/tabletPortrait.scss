@@ -1,4 +1,4 @@
-@import '../mobile';
+@import '../desktop';
 
 & {
     >div {
@@ -10,7 +10,20 @@
             input {
                 display: block;
                 width: auto;
+                height: 40px;
                 margin: 10px auto 0;
+            }
+
+            .login {
+                background-position: 10px -468px;
+            }
+
+            .email {
+                background-position: 10px -380px;
+            }
+
+            .password {
+                background-position: 10px -424px;
             }
 
             button {
