@@ -112,35 +112,6 @@ class MsComponent extends React.Component {
         }
       }
       break;
-      case phoneLandscape: {
-      }
-      break;
-      case tabletPortrait: {
-
-      }
-      break;
-      case tabletLandscape: {
-
-      }
-      break;
-      case desktop: {
-
-      }
-      break;
-      case desktopWide: {
-
-      }
-      break;
-      case desktopHD: {
-
-      }
-      break;
-      case desktopMega: {
-
-      }
-      break;
-
-
       default: {
 
       }
@@ -159,13 +130,13 @@ class MsComponent extends React.Component {
         </div>
         <div className="navi">
           <div className="search" onClick={ this.navClick.bind(this, 'search') }>
-            {(breakpoint == tabletLandscape || breakpoint == desktop
+            {(breakpoint == desktop
               || breakpoint == desktopWide || breakpoint == desktopHD
               || breakpoint == desktopMega )? <Search action={ this.searchComponentClick } />: null}
 
             <a href="#" className={ (this.props.ciklum.currentComponent === 'search')? 'search-active': '' } onClick={ this.navClick.bind(this, 'search') } />
             {(breakpoint == phonePortrait || breakpoint == phoneLandscape
-              || breakpoint == tabletPortrait) ? <div><Search action={ this.searchComponentClick } /></div> : null}
+              || breakpoint == tabletPortrait || breakpoint == tabletLandscape) ? <div><Search action={ this.searchComponentClick } /></div> : null}
           </div>
           <div className="basket">
             <a href="#">

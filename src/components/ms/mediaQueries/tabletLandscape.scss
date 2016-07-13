@@ -1,1 +1,94 @@
 @import '../desktop';
+
+& {
+    .navi {
+        .search {
+            width: 44px;
+            height: 48px;
+
+            >a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                border: 0;
+                background: url('../../images/ms/search.png') no-repeat center;
+
+                &:focus {
+                    outline: 0;
+                }
+            }
+
+            .search-active {
+                background-color: $subMenuBackgroundColor;
+            }
+
+            .search-active~div {
+                display: flex;
+            }
+
+            >div {
+                display: none;
+                position: absolute;
+                top: 48px;
+                left: 0;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 75px;
+                border: 0;
+                background: $subMenuBackgroundColor;
+                z-index: 2;
+
+                div {
+                    display: flex;
+                    width: 75%;
+
+                    input {
+                        display: block;
+                        flex-grow: 2;
+                        height: 30px;
+                        padding: 0 10px;
+                        border: 0;
+                        font-family: wf_segoe-ui_normal,Tahoma,Verdana,Arial,sans-serif;
+
+                        &:focus {
+                            outline: 0;
+                        }
+
+                        &::-webkit-input-placeholder {
+                            color: $linkColor;
+                            opacity: 1;
+                        }
+
+                        &::-moz-placeholder {
+                            color: $linkColor;
+                            opacity: 1;
+                        }// Firefox 19+
+
+                        &:-moz-placeholder {
+                            color: $linkColor;
+                            opacity: 1;
+                        }// Firefox 18-
+
+                        &:-ms-input-placeholder {
+                            color: $linkColor;
+                            opacity: 1;
+                        }
+                    }
+
+                    button {
+                        width: 33px;
+                        height: 30px;
+                        border: 0;
+                        background: $searchMobileButtonBackgroundColor url('../../images/ms/searchblue.png') no-repeat center;
+
+                        &:focus {
+                            outline: 0;
+                            background-color: $searchMobileButtonFocusedBackgroundColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
